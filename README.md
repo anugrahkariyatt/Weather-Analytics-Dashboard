@@ -3,7 +3,7 @@
 ### Overview  
 The **Weather Analytics Dashboard** is a modern web app that lets users explore and analyze weather patterns for different cities. It pulls in **live weather data**, **past records**, and **forecast trends** to give a complete picture — from what’s happening right now to how things have been changing over time.
 
-The dashboard blends **real-time updates**, **cached performance**, and **interactive charts**, allowing users to track **temperature, wind, and rainfall** seamlessly without waiting on slow API calls.
+The dashboard blends **real-time updates**, **high-performance caching**, and **interactive charts**, allowing users to track **temperature, wind, and rainfall** seamlessly without waiting on slow API calls.
 
 ---
 
@@ -54,7 +54,7 @@ Fully **responsive** layout that adapts to mobile, tablet, and desktop.
 ---
 
 ###  Data Caching & Auto-Refresh  
-- Backend **caches weather data** for 60 seconds to reduce API load.  
+- Backend **caches weather data using Redis** to drastically reduce API load and optimize data retrieval performance.  
 - Built-in **rate limiting** prevents overuse and keeps the API stable.
 
 ---
@@ -71,17 +71,38 @@ Fully **responsive** layout that adapts to mobile, tablet, and desktop.
 ###  Backend  
 - Node.js + Express  
 - WeatherAPI (live + historical data)  
-- Custom in-memory caching  
+- Redis (high-performance caching)  
 - Express Rate Limit (API protection)
+
+### DevOps & Infrastructure
+- **Docker** & **Docker Compose** (containerization and orchestration)
 
 ---
 
 ##  System Architecture
 
 The **frontend** communicates with a lightweight **Express backend** that handles API calls to WeatherAPI.  
-The backend **caches responses** temporarily to improve performance.  
-The client uses **Redux** for centralized state and **Recharts** for all visualizations — keeping everything smooth, reactive, and scalable.
+To ensure high speed and reliability, the backend caches responses temporarily in a **Redis** store.  
+The client uses **Redux** for centralized state and **Recharts** for all visualizations — keeping everything smooth, reactive, and scalable. All services (frontend, backend, and caching) are containerized using Docker for seamless deployment.
 
+## Getting Started
 
+You can run the entire application stack easily using Docker Compose.
 
+### Prerequisites
+- [Docker](https://www.docker.com/get-started) and Docker Compose installed on your machine.
+- A WeatherAPI key.
+
+### Setup
+1. Clone the repository.
+2. Navigate to the `server` directory and create a `.env` file with your environment variables (e.g., `PORT=4000`, your WeatherAPI key).
+3. From the root directory, run the following command to build and start the containers:
+
+```bash
+docker-compose up --build -d
+```
+## Accessing the App
+Frontend: http://localhost:4173
+Backend API: http://localhost:4000
+Redis: Running internally on port 6379
 
