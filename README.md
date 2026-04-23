@@ -102,7 +102,7 @@ You can run the entire application stack easily using Docker Compose.
 docker-compose up --build -d
 ```
 ## Accessing the App
-Frontend: http://localhost:4173
-Backend API: http://localhost:4000
-Redis: Running internally on port 6379
+- Frontend: http://localhost:4173
+- Backend API: http://localhost:4000
+- Redis: Running internally on port 6379
 
